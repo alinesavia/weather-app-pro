@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard Pro</title>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+    <div class="app">
+        <header class="header">
+            <h1 class="logo">WeatherPro</h1>
+            <div class="search-box">
+                <input type="text" id="city-input" placeholder="Buscar cidade..." autocomplete="off">
+                <button id="search-btn" title="Buscar">🔍</button>
+                <button id="geo-btn" title="Usar localização">📍</button>
+            </div>
+
+            <button class="theme-toggle" title="Alternar tema">🌓</button>
+        </header>
+
+        <main class="main-content">
+                  
+
+        <section class="weather-card">
+            <div class="weather-header">
+                <h2 id="city-name">Teresina<h2>
+                <p id="update-time">Atualizado às --:--</p>
+            </div>
+            <div class="weather-main">
+                <img id="weather-icon" class="weather-icon" alt="Ícone do clima">
+                <div class="temp-info">
+                    <h1 id="temperature" class="temperature">--°C</h1>
+                    <p id="description" class="description">Carregando...</p>
+                </div>
+            </div>
+
+            <div class="weather-details">
+                <div class="detail">
+                    <span>💨 Vento</span>
+                    <strong id="wind">-- km/h</strong>
+                </div>
+                <div class="detail">
+                    <span>💧 Umidade</span>
+                    <strong id="humidity">--%</strong>
+                 
+                </div>
+
+                <div class="detail">
+                    <span>🌡 Sensação</span>
+                    <strong id="feels-like">--°C</strong>
+                 
+                </div>
+                <div class="detail">
+                    <span>🌞 UV</span>
+                    <strong id="uv-index">--</strong>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section class="hourly-forecast">
+            <h3>Previsão por Hora</h3>
+
+            <div class="hourly-container" id="hourly-container"> </div>
+        </section>
+
+        <section class="daily-forecast">
+            <h3>Previsão de 7 Dias</h3>
+
+            <div class="daily-container" id="daily-container"> </div>
+        </section>
+
+        <section class="alerts" id="alerts">
+
+        </section>
+        </main>
+    </div>
+
+    <script src="./js/app.js"></script>
+</body>
+</html>
