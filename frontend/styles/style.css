@@ -175,6 +175,12 @@ body {
     line-height: 1;
 }
 
+.hidden {
+    display: none;
+}
+
+
+
 @media (max-width: 768px) {
     .header {
         flex-direction: column;

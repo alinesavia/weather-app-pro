@@ -13,6 +13,8 @@
             <h1 class="logo">WeatherPro</h1>
             <div class="search-box">
                 <input type="text" id="city-input" placeholder="Buscar cidade..." autocomplete="off">
+                <p id="loading-message" class="hidden">Buscando clima...</p>
+                <p id="error-message" class="hidden"></p>
                 <button id="search-btn" title="Buscar">🔍</button>
                 <button id="geo-btn" title="Usar localização">📍</button>
             </div>
@@ -29,7 +31,7 @@
                 <p id="update-time">Atualizado às --:--</p>
             </div>
             <div class="weather-main">
-                <img id="weather-icon" class="weather-icon" alt="Ícone do clima">
+                <img id="weather-icon" src=""  class="weather-icon" alt="Ícone do clima">
                 <div class="temp-info">
                     <h1 id="temperature" class="temperature">--°C</h1>
                     <p id="description" class="description">Carregando...</p>
@@ -52,11 +54,7 @@
                     <strong id="feels-like">--°C</strong>
                  
                 </div>
-                <div class="detail">
-                    <span>🌞 UV</span>
-                    <strong id="uv-index">--</strong>
-                    
-                </div>
+                
             </div>
         </section>
 
