@@ -13,7 +13,6 @@ const errorMessage= document.getElementById("error-message");
 const hourlyContainer = document.getElementById("hourly-container");
 const dailyContainer = document.getElementById("daily-container");
   
- 
 
  function updateWeather(data) {
   cityName.textContent = data.name;
@@ -74,68 +73,54 @@ function updateHourForecast(data) {
 }
 
 async function fetchForecast(city) {
-  try {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric&lang=pt_br`
-    );
+  const response = await fetch(`http://localhost:3000/forecast?city=${city}`);
 
-    if (!response.ok) {
-      throw new Error("Erro ao buscar previsão");
-    }
-
-    const data = await response.json();
-    return data;
-
-  } catch (error) {
-    console.error(error);
-    return null;
+  if (!response.ok) {
+    const errorData = await response.json();
+    const msg = errorData.message || "Erro ao buscar a previsão.";
+    throw new Error(msg.charAt(0).toUpperCase() + msg.slice(1));
   }
+
+  return response.json();
+}
+
+async function fetchWeather(city) {
+  const response = await fetch(`http://localhost:3000/weather?city=${city}`);
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    const msg = errorData.message || "Erro ao buscar o clima.";
+    throw new Error(msg.charAt(0).toUpperCase() + msg.slice(1));
+  }
+
+  return response.json();
 }
 
 async function handleSearch() {
   const city = cityInput.value.trim();
 
   if (city === "") {
-    showError("Digite o nome de uma cidade");
+    showError("Por favor, digite o nome de uma cidade.");
     return;
   }
 
   showLoading();
 
-  const weatherData = await fetchWeather(city);
-  const forecastData = await fetchForecast(city);
+  try {
+    const [weatherData, forecastData] = await Promise.all([
+      fetchWeather(city),
+      fetchForecast(city),
+    ]);
 
-  hideLoading();
-
-  if (weatherData && forecastData) {
+    errorMessage.classList.add("hidden");
+    console.log("WEATHER DATA:", weatherData);
     updateWeather(weatherData);
     updateHourForecast(forecastData);
-  } else {
-    showError("Cidade não encontrada");
-  }
- 
-    cityInput.value = "";
-}
-
-const API_KEY = "af5fd9833d2c9fe91c037034e4d5dcde";
-const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
-
-
-async function fetchWeather(city) {
-  try {
-    const response = await fetch(
-      `${BASE_URL}?q=${city}&appid=${API_KEY}&units=metric&lang=pt_br`
-    );
-
-    if (!response.ok) {
-      throw new Error("Cidade não encontrada");
-    }
-
-    const data = await response.json();
-    return data;
-
   } catch (error) {
-    return null;
+    showError(error.message);
+  } finally {
+    hideLoading();
+    cityInput.value = "";
   }
 }
 
@@ -160,5 +145,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
   
-
-
