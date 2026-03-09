@@ -1,121 +1,111 @@
-🌤️ WeatherPro — Weather Dashboard Application
+# WeatherPro — Aplicação de Painel Climático
 
 Aplicação web de consulta climática desenvolvida com JavaScript, Node.js e Express, consumindo dados da API da OpenWeatherMap.
 
 O projeto foi estruturado com separação entre frontend e backend, utilizando variáveis de ambiente para proteger a chave da API.
 
-🚀 Demonstração
+## Funcionalidades Principais
 
-🔎 Busca por cidade
-🌡️ Exibição de temperatura atual
-💨 Vento
-💧 Umidade
-🌡 Sensação térmica
-⏱️ Atualização em tempo real
-📅 Previsão por hora
+O WeatherPro oferece uma interface intuitiva para acessar dados meteorológicos, incluindo:
 
-🛠️ Tecnologias Utilizadas
-Frontend
+*   Busca de informações climáticas por nome da cidade.
+*   Exibição da temperatura atual, sensação térmica, velocidade do vento e umidade.
+*   Atualização dos dados em tempo real.
+*   Previsão do tempo para as próximas horas.
+*   Tratamento de erros para buscas inválidas e um indicador de carregamento dinâmico para melhor experiência do usuário.
 
-HTML5
+## Tecnologias Utilizadas
 
-CSS3
+**Frontend:**
+*   HTML5
+*   CSS3
+*   JavaScript (Vanilla JS)
+*   Fetch API
 
-JavaScript (Vanilla JS)
+**Backend:**
+*   Node.js
+*   Express
+*   CORS
+*   Dotenv
 
-Fetch API
+**API Externa:**
+*   OpenWeatherMap
 
-Backend
+## Estrutura do Projeto
 
-Node.js
+O projeto está organizado da seguinte forma para manter a clareza e a manutenibilidade:
 
-Express
-
-CORS
-
-Dotenv
-
-API Externa
-
-OpenWeatherMap
-
-📂 Estrutura do Projeto
+```
 weather-app/
 ├── backend/
 │   ├── server.js
 │   ├── package.json
 │   └── .env (não versionado)
 │
-├── frontend/
+├── frontend/ 
 │   ├── index.html
 │   ├── js/app.js
 │   └── styles/style.css
 │
 └── README.md
+```
 
-🔐 Segurança
+## Segurança
 
-A chave da API é protegida por meio de variável de ambiente (.env), que está incluída no .gitignore, evitando exposição no repositório público.
+A chave da API da OpenWeatherMap é um dado sensível. Para protegê-la, ela é armazenada em um arquivo `.env` na pasta do backend. Este arquivo está listado no `.gitignore`, garantindo que nunca seja enviado para o repositório público.
 
-⚙️ Como Executar Localmente
-1️⃣ Clonar o repositório
-git clone <url-do-repositorio>
-2️⃣ Instalar dependências do backend
-cd backend
-npm install
-3️⃣ Criar arquivo .env dentro da pasta backend
-API_KEY=sua_chave_aqui
-4️⃣ Rodar o servidor
-node server.js
-Servidor disponível em: http://localhost:3000
-5️⃣ Abrir o frontend
+## Como Executar Localmente
 
-Abra o arquivo:
+Para executar o projeto em seu ambiente local, siga estes passos:
 
-frontend/index.html
+1.  **Clonar o repositório:**
+    ```bash
+    git clone <url-do-repositorio>
+    ```
+2.  **Instalar dependências do backend:**
+    Navegue até a pasta `backend` e execute o comando:
+    ```bash
+    cd backend
+    npm install
+    ```
+3.  **Configurar a chave da API:**
+    Ainda na pasta `backend`, crie um arquivo chamado `.env` e adicione sua chave da API da OpenWeatherMap:
+    ```
+    API_KEY=sua_chave_aqui
+    ```
+4.  **Iniciar o servidor backend:**
+    ```bash
+    node server.js
+    ```
+    O servidor estará disponível em `http://localhost:3000`.
 
-ou utilize a extensão Live Server no VS Code.
+5.  **Abrir o frontend:**
+    Abra o arquivo `frontend/index.html` em seu navegador. Você também pode usar uma extensão como o Live Server no VS Code para uma melhor experiência de desenvolvimento.
 
-🌍 Funcionalidades
+## Melhorias Futuras
 
-✔️ Consulta por cidade
-✔️ Tratamento de erros
-✔️ Loading dinâmico
-✔️ Consumo simultâneo de múltiplos endpoints (Promise.all)
-✔️ Backend intermediador para proteger a chave da API
+Existem planos para adicionar novas funcionalidades ao projeto, como:
 
-📈 Melhorias Futuras
+*   Geolocalização para buscar automaticamente o clima da localização do usuário.
+*   Previsão do tempo estendida para os próximos 7 dias.
+*   Alternância entre temas claro (light) e escuro (dark).
+*   Melhorias na responsividade para uma melhor visualização em dispositivos móveis.
+*   Deploy da aplicação em um ambiente de produção.
 
-🌎 Geolocalização automática
+## Autora
 
-📅 Previsão de 7 dias
+**Aline Sávia Nascimento Silva Lima**
 
-🌗 Alternância de tema (dark/light)
+*   Desenvolvedora em formação
+*   Estudante de Tecnologia em Sistemas para Internet
+*   Experiência em APIs REST e organização de projetos full stack
 
-📱 Responsividade aprimorada
+## Diferenciais Técnicos
 
-🚀 Deploy em produção
+Este projeto foi desenvolvido com foco em boas práticas de engenharia de software:
 
-👩🏻‍💻 Autora
-
-Aline Sávia Nascimento Silva Lima
-
-Desenvolvedora em formação
-
-Estudante de Tecnologia em Sistemas para Internet
-
-Experiência em APIs REST e organização de projetos full stack
-
-✨ Diferenciais Técnicos
-
-Este projeto foi estruturado seguindo boas práticas:
-
-Separação de responsabilidades (frontend/backend)
-
-Proteção de credenciais
-
-Versionamento organizado
-
-Tratamento de erros no backend
-
-Estrutura preparada para deploy
+*   **Separação de Responsabilidades:** O código do frontend e do backend são mantidos em pastas separadas, facilitando a manutenção e o desenvolvimento.
+*   **Proteção de Credenciais:** As chaves de API são mantidas fora do controle de versão.
+*   **Versionamento Organizado:** O uso do Git segue um fluxo de trabalho claro.
+*   **Tratamento de Erros:** O backend possui tratamento para responder adequadamente a requisições inválidas.
+*   **Estrutura Escalável:** A arquitetura do projeto está preparada para futuras expansões e para o deploy em produção.
