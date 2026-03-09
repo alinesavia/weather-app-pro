@@ -4,7 +4,7 @@ const temperature = document.querySelector("#temperature");
 const description = document.querySelector("#description");
 const wind = document.querySelector("#wind");
 const humidity = document.querySelector("#humidity");
-const fellsLike = document.querySelector("#feels-like");
+const feelsLike = document.querySelector("#feels-like");
 const cityInput = document.getElementById("city-input");
 const searchBtn = document.getElementById("search-btn");
 const weatherIcon = document.getElementById("weather-icon");
@@ -28,7 +28,7 @@ const dailyContainer = document.getElementById("daily-container");
 
   wind.textContent = `${data.wind.speed} km/h`;
   humidity.textContent = `${data.main.humidity}%`;
-  fellsLike.textContent = `${Math.round(data.main.feels_like)}°C`;
+  feelsLike.textContent = `${Math.round(data.main.feels_like)}°C`;
 
   weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 }
@@ -70,6 +70,33 @@ function updateHourForecast(data) {
     
   })
     
+}
+
+function updateDailyForecast(data) {
+  dailyContainer.innerHTML = "";
+
+  const dailyData = data.list.filter(item => item.dt_txt.includes("12:00:00"));
+
+  const nextDays = dailyData.slice(0, 5);
+
+  nextDays.forEach(item => {
+    const card = document.createElement("div");
+    card.classList.add("day-card");
+
+    const date = new Date(item.dt_txt);
+    const day = date.toLocaleDateString("pt-BR", { weekday: "short" });
+
+    const icon = item.weather[0].icon;
+    const temp = Math.round(item.main.temp);
+
+    card.innerHTML = `
+      <p>${day}</p>
+      <img src="https://openweathermap.org/img/wn/${icon}.png" />
+      <p>${temp}°C</p>
+    `;
+
+    dailyContainer.appendChild(card);
+  });
 }
 
 async function fetchForecast(city) {
@@ -116,6 +143,7 @@ async function handleSearch() {
     console.log("WEATHER DATA:", weatherData);
     updateWeather(weatherData);
     updateHourForecast(forecastData);
+    updateDailyForecast(forecastData);
   } catch (error) {
     showError(error.message);
   } finally {

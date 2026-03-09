@@ -179,6 +179,54 @@ body {
     display: none;
 }
 
+.hourly-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+    
+}
+
+.hour-card {
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease;
+}
+
+.hour-card:hover {
+    transform: translateY(-3px);
+}
+
+.hour-card img {
+    width: 40px;
+}
+
+.daily-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.day-card {
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease;
+}
+
+.day-card:hover {
+    transform: translateY(-3px);
+}
+
+.day-card img {
+    width: 40px;
+}
 
 
 @media (max-width: 768px) {
